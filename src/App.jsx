@@ -1,8 +1,13 @@
-import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { useState, useEffect } from 'react'
 import Reminders from './Reminders';
 import AddReminder from './AddReminder';
 import ReminderDetail from './ReminderDetail';
+import UserProvider from "./contexts/UserContext";
+import Register from "./components/Register";
+import Login from "./components/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Profile from "./pages/Profile";
 
 import './App.css'
 
@@ -24,10 +29,15 @@ const App = () => {
   }, [data])
 
   return (
+    <UserProvider>
     <Router>
       <div>
         <nav>
           <Link to="/">Inicio</Link>
+          <br></br>
+          <Link to="/register">Registrarse</Link>
+          <br></br>
+          <Link to="/login">Login</Link>
           <br></br>
           <Link to="/reminders">Agregar recordatorio</Link>
         </nav>
@@ -35,6 +45,17 @@ const App = () => {
         ? (<div>cargando...</div>) 
         : 
           <Routes>
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
             <Route path="/" element={<Reminders data={data} />} />
 
             <Route
@@ -47,6 +68,7 @@ const App = () => {
         
       </div>
     </Router>
+    </UserProvider>
   )
 }
 export default App
