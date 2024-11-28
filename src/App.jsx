@@ -8,8 +8,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
-
-import './App.css'
+import Home from "./pages/Home";
 
 const App = () => {
   const [data, setData] = useState(null)
@@ -32,19 +31,20 @@ const App = () => {
     <UserProvider>
     <Router>
       <div>
-        <nav>
+        {/* <nav>
           <Link to="/">Inicio</Link>
           <br></br>
           <Link to="/register">Registrarse</Link>
           <br></br>
           <Link to="/login">Login</Link>
           <br></br>
-          <Link to="/reminders">Agregar recordatorio</Link>
-        </nav>
+          <Link to="/addreminder">Agregar recordatorio</Link>
+        </nav> */}
         {data === null 
         ? (<div>cargando...</div>) 
         : 
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route
@@ -56,10 +56,10 @@ const App = () => {
             }
           />
 
-            <Route path="/" element={<Reminders data={data} />} />
+            {/* <Route path="/" element={<Reminders data={data} />} /> */}
 
             <Route
-              path="/reminders"
+              path="/addreminder"
               element={<div><AddReminder/></div>}/>
 
             <Route path="/reminders/:id" element={<ReminderDetail />} />

@@ -1,0 +1,194 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode {
+  background-color: #312e5f;
+}
+
+.dark-mode-toggle button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.dark-mode-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 15px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #312e5f;
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+.icon {
+  position: absolute;
+  font-size: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+body.dark-mode .card.remind-me,
+body.dark-mode .card.dark-mode,
+body.dark-mode .card.learn-more,
+body.dark-mode .card.illustration {
+  background-color: #a6a6a6;
+  color: #f4f4f4;
+}
+
+body.dark-mode .card.dark-mode button {
+  color:#f4f4f4
+}
+
+
+/*Home*/
+
+.home-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 1200px;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.remind-me {
+  background-color: #e6e6e6;
+  grid-column: span 1;
+}
+
+.sign-up {
+  background-color: #ff5722;
+  color: white;
+  position: relative;
+}
+
+.dark-mode {
+  background-color: #e6e6e6;
+  color: black;
+}
+
+.clock {
+  background-color: #ff1744;
+  color: white;
+}
+
+.log-in {
+  background-color: #ff1744;
+  color: white;
+}
+
+.learn-more {
+  background-color: #e6e6e6;
+  color: black;
+}
+
+.anonymous {
+  background-color: #7c4dff;
+  color: white;
+}
+
+.illustration {
+  background-color: #e6e6e6;
+  grid-column: span 1;
+}
+
+.illustration img {
+  width: 100%; 
+  max-width: 300px; 
+  top: -40px;
+}
+
+.arrow,
+.plus {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.plus {
+  color:#ff1744
+}
+
+.card.remind-me {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+}
+
+.pin {
+  position: absolute;
+  top: -20px;  
+  font-size: 30px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
