@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -38,8 +39,9 @@ function Register() {
     }
   };
 
-  return (
-    <div>
+  return (<>
+  <div className="card remind-me"><span className="pin">📌</span><Link to="/">Remind Me</Link></div>
+    <div className="register-container">
       <h2>Sign up</h2>
       <form onSubmit={handleRegister}>
         <input
@@ -49,13 +51,13 @@ function Register() {
           onChange={(e) => setName(e.target.value)}
           required
         />
-        <input
+        {/* <input
           type="number"
           placeholder="Age"
           value={age}
           onChange={(e) => setAge(e.target.value)}
           required
-        />
+        /> */}
         <input
           type="email"
           placeholder="Email"
@@ -74,6 +76,7 @@ function Register() {
       </form>
       {error && <p>{error}</p>}
     </div>
+    </>
   );
 }
 

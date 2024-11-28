@@ -23,17 +23,18 @@ const AddReminder = () => {
     }
   };
 
-  return (
-    <div>
+  return (<>
+    <div className="add-reminder-div">
       <input
         type="text"
         value={reminderTitle}
         onChange={(e) => setreminderTitle(e.target.value)}
         required
       />
-      <button onClick={handleAddReminders}>Añadir recordatorio</button>
+      <button onClick={handleAddReminders}>Add reminder</button>
       {createdReminder && <p>{createdReminder}</p>}
     </div>
+    </>
   );
 };
 

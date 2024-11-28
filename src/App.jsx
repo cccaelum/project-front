@@ -1,14 +1,16 @@
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import Reminders from './Reminders';
-import AddReminder from './AddReminder';
+import AddReminder from './components/AddReminder';
 import ReminderDetail from './ReminderDetail';
 import UserProvider from "./contexts/UserContext";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import LearnMore from "./components/LearnMore";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   const [data, setData] = useState(null)
@@ -31,15 +33,6 @@ const App = () => {
     <UserProvider>
     <Router>
       <div>
-        {/* <nav>
-          <Link to="/">Inicio</Link>
-          <br></br>
-          <Link to="/register">Registrarse</Link>
-          <br></br>
-          <Link to="/login">Login</Link>
-          <br></br>
-          <Link to="/addreminder">Agregar recordatorio</Link>
-        </nav> */}
         {data === null 
         ? (<div>cargando...</div>) 
         : 
@@ -55,8 +48,11 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+            <Route path="/learn" element={<LearnMore />} />
 
-            {/* <Route path="/" element={<Reminders data={data} />} /> */}
+            <Route path="/dashboard" element={<Dashboard />} />
+
+            <Route path="/reminders" element={<Reminders data={data} />} /> 
 
             <Route
               path="/addreminder"

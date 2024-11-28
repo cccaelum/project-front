@@ -192,3 +192,64 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.register-container, .log-in-container, .add-reminder-div {
+  background-color: #f4f4f4; 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.register-container input,
+.log-in-container input, .add-reminder-div input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.register-container input:focus,
+.log-in-container input:focus {
+  border-color: #4a90e2; 
+  outline: none;
+}
+
+/* Estilo para los botones */
+.register-container button,
+.log-in-container button, .add-reminder-div button {
+  background-color: #4a90e2; 
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.register-container button:hover,
+.log-in-container button:hover {
+  background-color: #357ab7; /* Color de fondo cuando pasa el mouse */
+}
+
+/* Mensajes de error */
+.register-container p,
+.log-in-container p {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 10px;
+}
+

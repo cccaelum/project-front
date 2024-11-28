@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { auth } from "../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -37,8 +38,9 @@ function Login() {
     }
   };
 
-  return (
-    <div>
+  return (<>
+  <div className="card remind-me"><span className="pin">📌</span><Link to="/">Remind Me</Link></div>
+    <div className="log-in-container">
       <h2>Log in</h2>
       <form onSubmit={handleLogin}>
         <input
@@ -59,6 +61,7 @@ function Login() {
       </form>
       {error && <p>{error}</p>}
     </div>
+    </>
   );
 }
 

@@ -6,7 +6,7 @@ const Reminders = ({data}) => {
     <ul>
       {data.map(item => (
         <li key={item._id}>
-          <Link to={`reminders/${item._id}`}>{item.title}</Link>
+          <Link to={`${item._id}`}>{item.title}</Link>
         </li>
       ))}
     </ul>
