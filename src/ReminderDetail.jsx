@@ -7,13 +7,18 @@ const ReminderDetail = () => {
   const [reminder, setReminder] = useState(null);
   const urlApi = import.meta.env.VITE_APP_API_URL;
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('es-ES'); 
+  };
+
   useEffect(() => {
     const fetchReminder = async () => {
       try {
         const response = await axios.get(`${urlApi}reminders/${id}`); 
         setReminder(response.data);
       } catch (error) {
-        console.error('Error al obtener los detalles del recordatorio:', error);
+        console.error('Error getting reminder details:', error);
       }
     };
 
@@ -21,16 +26,27 @@ const ReminderDetail = () => {
   }, [id, urlApi]);
 
   if (!reminder) {
-    return <div>Cargando detalles del recordatorio...</div>;
+    return <div>Loading reminder details...</div>;
   }
 
   return (
     <div>
-      <p><strong>Título:</strong> {reminder.title}</p>
-      <p><strong>Descripción:</strong> {reminder.description || 'Sin descripción'}</p>
-      <p><strong>Prioridad:</strong> {reminder.priority || 'No definida'}</p>
-      <p><strong>Fecha:</strong> {reminder.date || 'No definida'}</p>
-      <p><strong>Completado:</strong> {reminder.completed ? 'Sí' : 'No'}</p>
+      <p><strong>Title:</strong> {reminder.title}</p>
+      <p><strong>Description:</strong> {reminder.description || 'No description'}</p>
+      <p><strong>Priority:</strong> {reminder.priority || 'Not defined'}</p>
+      <p>
+        <strong>Date:</strong>{' '}
+        {reminder.date ? formatDate(reminder.date) : 'Not defined'}
+      </p>
+      <p><strong>Completed:</strong> {reminder.completed ? 'Yes' : 'No'}</p>
+      {reminder.url && (
+        <p>
+          <strong>URL:</strong>{' '}
+          <a href={reminder.url} target="_blank" rel="noopener noreferrer">
+            {reminder.url}
+          </a>
+        </p>
+      )}
     </div>
   );
 };

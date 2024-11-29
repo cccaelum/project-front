@@ -33,8 +33,8 @@ function Login() {
 
       navigate("/profile");
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
-      setError("Error al iniciar sesión. Revisa tus credenciales.");
+      console.error("Login error:", error);
+      setError("Failed to log in. Check your credentials.");
     }
   };
 

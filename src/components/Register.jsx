@@ -10,7 +10,6 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext); // Accede a la función setUser
@@ -26,12 +25,12 @@ function Register() {
       // Enviar los datos del usuario al backend para crear en MongoDB
       await axios.post(
         "/profile",
-        { uid: user.uid, name, email, age },
+        { uid: user.uid, name, email },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
       // Actualiza el contexto de usuario
-      setUser({ uid: user.uid, name, email, age }); // Actualiza el usuario en el contexto
+      setUser({ uid: user.uid, name, email }); // Actualiza el usuario en el contexto
 
       navigate("/profile");
     } catch (error) {
@@ -51,13 +50,6 @@ function Register() {
           onChange={(e) => setName(e.target.value)}
           required
         />
-        {/* <input
-          type="number"
-          placeholder="Age"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-          required
-        /> */}
         <input
           type="email"
           placeholder="Email"
