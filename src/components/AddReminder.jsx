@@ -70,17 +70,20 @@ const AddReminder = () => {
         onChange={handleChange}
       >
         <option value="">Select Priority</option>
-        <option value="High">High</option>
-        <option value="Medium">Medium</option>
-        <option value="Low">Low</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
       </select>
-      <input
-        type="text"
+      <select
         name="tag"
-        placeholder="Tag"
         value={reminder.tag}
         onChange={handleChange}
-      />
+        required
+      >
+        <option value="">Select Tag</option>
+        <option value="work">Work</option>
+        <option value="personal">Personal</option>
+      </select>
       <input
         type="date"
         name="date"

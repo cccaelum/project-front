@@ -7,9 +7,9 @@ import Login from "./components/Login";
 import LearnMore from "./components/LearnMore";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
-import Reminders from './Reminders';
+import Reminders from './pages/Reminders';
 import AddReminder from './components/AddReminder';
-import ReminderDetail from './ReminderDetail';
+import ReminderDetail from './pages/ReminderDetail';
 
 
 const App = () => {

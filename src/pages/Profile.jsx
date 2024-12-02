@@ -22,6 +22,7 @@ function Profile() {
         <>
           <p>Name: {user.name}</p>
           <p>Email: {user.email}</p>
+          <Link to="/dashboard">Go to Dashboard</Link>
           <Link to="/reminders">Go to Reminders</Link>
           <h3>Add a new reminder</h3>
           <AddReminder />
