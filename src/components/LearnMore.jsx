@@ -2,7 +2,7 @@ const LearnMore = () => {
     return (<>
     <div className="learn-more-content">
     <p>
-        Simplify your life, <br></br> organize your day, <br></br> all in one place.
+        Focus on your daily tasks <br></br> manage your reminders <br></br> organize your day <br></br> all in one place.
       </p>
         <p>
           © {new Date().getFullYear()} Celia Cebaquebas Calero

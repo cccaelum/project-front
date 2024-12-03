@@ -50,6 +50,7 @@ const AddReminder = () => {
 
   return (
     <div className="add-reminder-div">
+      <h3>Add Reminder</h3>
       <input
         type="text"
         name="title"
@@ -69,7 +70,7 @@ const AddReminder = () => {
         value={reminder.priority}
         onChange={handleChange}
       >
-        <option value="">Select Priority</option>
+        <option value="" disabled hidden>Priority</option>
         <option value="high">High</option>
         <option value="medium">Medium</option>
         <option value="low">Low</option>
@@ -80,7 +81,7 @@ const AddReminder = () => {
         onChange={handleChange}
         required
       >
-        <option value="">Select Tag</option>
+        <option value="" disabled hidden>Tag</option>
         <option value="work">Work</option>
         <option value="personal">Personal</option>
       </select>
@@ -97,7 +98,7 @@ const AddReminder = () => {
         value={reminder.url}
         onChange={handleChange}
       />
-      <button onClick={handleAddReminders}>Add Reminder</button>
+      <button onClick={handleAddReminders}>+</button>
       {createdReminder && <p>{createdReminder}</p>}
     </div>
   );

@@ -49,9 +49,9 @@ const Calendar = () => {
       <div className="calendar">
         <header className="arrow-container">
           <button onClick={() => changeMonth(-1)} className="arrow-button">{"<"}</button>
-          <h2>
+          <h3 className="month">
             {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
-          </h2>
+          </h3>
           <button onClick={() => changeMonth(1)} className="arrow-button">{">"}</button>
         </header>
         <div className="days-of-week">

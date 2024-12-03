@@ -1,9 +1,10 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const ReminderDetail = () => {
   const { id } = useParams(); 
+  const navigate = useNavigate();
   const [reminder, setReminder] = useState(null);
   const urlApi = import.meta.env.VITE_APP_API_URL;
 
@@ -24,6 +25,16 @@ const ReminderDetail = () => {
 
     fetchReminder();
   }, [id, urlApi]);
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`${urlApi}reminders/${id}`);
+      alert('Reminder deleted successfully!');
+      navigate('/reminders'); 
+    } catch (error) {
+      console.error('Error deleting reminder:', error);
+    }
+  };
 
   if (!reminder) {
     return <div>Loading reminder details...</div>;
@@ -47,6 +58,8 @@ const ReminderDetail = () => {
           </a>
         </p>
       )}
+      <button>Edit</button>
+      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 };

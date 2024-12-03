@@ -21,6 +21,7 @@ body.dark-mode {
 }
 
 .dark-mode-toggle button {
+  font-size: 15px;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -88,6 +89,10 @@ input:checked + .slider:before {
 body.dark-mode .card.remind-me,
 body.dark-mode .card.dark-mode,
 body.dark-mode .card.learn-more,
+body.dark-mode .card.reminders,
+body.dark-mode .card.reminders h3,
+body.dark-mode .card.weather,
+body.dark-mode .weather-input,
 body.dark-mode .card.illustration {
   background-color: #a6a6a6;
   color: #f4f4f4;
@@ -97,10 +102,18 @@ body.dark-mode .card.dark-mode button {
   color:#f4f4f4
 }
 
+body.dark-mode .reminders-container select {
+  color:#f4f4f4
+}
+
+body.dark-mode .reminders-container select:focus {
+  color:#f4f4f4;
+  background-color: #a6a6a6;
+}
 
 /*Home*/
 
-.home-container {
+.cards-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
@@ -117,10 +130,8 @@ body.dark-mode .card.dark-mode button {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
-.remind-me {
+.remind-me, .reminders, .weather {
   background-color: #e6e6e6;
-  grid-column: span 1;
 }
 
 .sign-up {
@@ -135,13 +146,101 @@ body.dark-mode .card.dark-mode button {
 }
 
 .clock {
+  position: relative;
   background-color: #ff1744;
   color: white;
 }
 
-.log-in {
+.log-in, .add-reminder {
   background-color: #ff1744;
   color: white;
+}
+
+.add-reminder-div {
+  padding: 20px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.add-reminder-div input,
+.add-reminder-div textarea,
+.add-reminder-div select {
+  font-family: 'Arial', sans-serif;
+  background-color: transparent;
+  color: white;
+  width: 100%;
+  resize: none;
+  border: none;
+  font-size: 16px;
+}
+
+.add-reminder-div input:focus,
+.add-reminder-div textarea:focus,
+.add-reminder-div select:focus {
+  outline: none;
+}
+
+.add-reminder-div select:focus {
+  color: white;
+  background-color: #ff1744;
+}
+.add-reminder-div input::placeholder, .add-reminder-div textarea::placeholder {
+  color: white;
+}
+
+.reminders-container {
+  max-height: 350px; 
+  max-width: 250px;
+  overflow: auto; 
+  scrollbar-width: thin; 
+  scrollbar-color: #ff1744 #f4f4f4; 
+}
+
+
+.reminders-container select {
+  background-color: transparent;
+  border: none;
+}
+
+.delete-button {
+  position: relative;
+  cursor: pointer;
+  background-color: #ff1744;
+  color: #f4f4f4;
+  border: none;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.delete-button:hover {
+  background-color: #000000;
+}
+
+.reminders-list {
+  text-align: left;
+  list-style-type: none;
+  padding: 20px;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.reminders-list li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.reminders-list a:hover {
+  border-bottom: 1px dotted #ff1744;
 }
 
 .learn-more {
@@ -153,9 +252,8 @@ body.dark-mode .card.dark-mode button {
  cursor: pointer;
 }
 
-
 .anonymous {
-  background-color: #7c4dff;
+  background-color: #9d1ff6;
   color: white;
 }
 
@@ -191,7 +289,13 @@ body.dark-mode .card.dark-mode button {
 .pin {
   position: absolute;
   top: -20px;  
-  font-size: 30px;
+  font-size: 30px; 
+}
+
+.timer {
+  position: absolute;
+  top: -20px;
+  margin-left: -20px;  
 }
 
 a {
@@ -199,7 +303,7 @@ a {
   color: inherit;
 }
 
-.register-container, .log-in-container, .add-reminder-div {
+.register-container, .log-in-container {
   background-color: #f4f4f4; 
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -217,7 +321,7 @@ h2 {
 }
 
 .register-container input,
-.log-in-container input, .add-reminder-div input {
+.log-in-container input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -235,7 +339,7 @@ h2 {
 /* Estilo para los botones */
 .register-container button,
 .log-in-container button, .add-reminder-div button {
-  background-color: #4a90e2; 
+  background-color: #9d1ff6; 
   color: white;
   padding: 10px 20px;
   border: none;
@@ -254,7 +358,7 @@ h2 {
 /* Mensajes de error */
 .register-container p,
 .log-in-container p {
-  color: #e74c3c;
+  color: #9d1ff6;
   font-size: 14px;
   margin-top: 10px;
 }
@@ -262,28 +366,26 @@ h2 {
 .calendar {
   display: flex;
   flex-direction: column;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  max-width: 400px;
-  margin: 20px auto;
-  font-family: Arial, sans-serif;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #9d1ff6;
+}
+
+.month {
+  color: #f4f4f4;
 }
 
 .days-of-week {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
-  background-color: #fafafa;
+  background-color: transparent;
   padding: 5px 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ff5722;
 }
 
 .day-name {
   font-weight: bold;
   font-size: 0.9rem;
-  color: #555;
+  color: #f4f4f4;
 }
 
 .days {
@@ -291,6 +393,7 @@ h2 {
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
   padding: 10px 0;
+  color: #fff;
 }
 
 .day {
@@ -300,7 +403,7 @@ h2 {
 }
 
 .day:hover {
-  background-color: #007bff;
+  background-color: #ff5722;
   color: #fff;
 }
 
@@ -310,8 +413,8 @@ h2 {
 
 .arrow-button {
   background-color: transparent;
-  border: 2px solid #007bff;
-  color: #007bff;
+  border: none;
+  color: #ff5722;
   font-size: 1.5rem;
   padding: 5px 10px;
   cursor: pointer;
@@ -320,7 +423,7 @@ h2 {
 }
 
 .arrow-button:hover {
-  background-color: #007bff;
+  background-color: #9d1ff6;
   color: #ffffff;
   transform: scale(1.1);
 }
@@ -346,14 +449,27 @@ h2 {
   margin: 0 auto;
 }
 
+.pomodoro h1{
+  color: #f4f4f4;
+}
+
+.pomodoro button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.clock-container span {
+  cursor: pointer;
+  font-size: 25px;
+}
+
 .weather-container {
   max-width: 400px;
   margin: 20px auto;
   text-align: center;
   padding: 20px;
-  border-radius: 10px;
-  background: var(--card-background);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .search-container {
@@ -365,8 +481,12 @@ h2 {
 .weather-input {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
+  border: none;
+  background-color: transparent;
+}
+
+.weather-input:focus {
+  outline: none;
 }
 
 .weather-button {
@@ -375,6 +495,8 @@ h2 {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+  background-color: #9d1ff6;
+  color: #f4f4f4;
 }
 
 .weather-info {

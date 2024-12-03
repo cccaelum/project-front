@@ -13,11 +13,11 @@ const Home = () => {
   };
 
   return (<>
-    <div className="home-container">
+    <div className="cards-container">
     <div className="card remind-me"><span className="pin">📌</span><Link to="/">Remind Me</Link></div>
     <div className="card sign-up"><Link to="/register">SIGN UP</Link><span className="arrow">→</span></div>
     <div className="card dark-mode"><DarkModeToggle /></div>
-    <div className="card clock"><Clock /></div>
+    <div className="card clock"><Clock showPomodoro={false}/></div>
     <div className="card log-in"><Link to="/login">LOG IN</Link><span className="arrow">→</span></div>
     <div
         className={'card learn-more'} 
