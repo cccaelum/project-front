@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -25,16 +24,27 @@ const Reminders = () => {
     fetchReminders();
   }, []);
 
+  const handleMarkAsComplete = async (id) => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
+        
+      await axios.put(`${urlApi}/${id}`, { completed: true }, config);
+      alert('Task marked as completed!');
+      setReminders((prevReminders) => prevReminders.filter((reminder) => reminder._id !== id));
+    } catch (error) {
+      console.error('Error marking reminder as complete:', error);
+    }
+  };
+
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem("authToken");
-      const config = token
-        ? { headers: { Authorization: `Bearer ${token}` } }
-        : {};
+      const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
   
       await axios.delete(`${urlApi}/${id}`, config);
       alert('Reminder deleted successfully!');
-      setReminders(reminders.filter((reminder) => reminder._id !== id)); 
+      setReminders((prevReminders) => prevReminders.filter((reminder) => reminder._id !== id));
     } catch (error) {
       console.error('Error deleting reminder:', error);
     }
@@ -42,8 +52,10 @@ const Reminders = () => {
 
   const filteredReminders = reminders.filter((reminder) => {
     return (
+      !reminder.completed &&
       (!filters.priority || reminder.priority === filters.priority) &&
-      (!filters.tag || reminder.tag === filters.tag)
+      (!filters.tag || reminder.tag === filters.tag) 
+      
     );
   });
 
@@ -70,9 +82,12 @@ const Reminders = () => {
       </div>
       <ul className='reminders-list'>
         {filteredReminders.map((item) => (
-          <li key={item._id}>
-            <Link to={`/reminders/${item._id}`}>{item.title}</Link>
-            <button className="delete-button" onClick={() => handleDelete(item._id)}>X</button>
+          <li key={item._id} onClick={() => handleMarkAsComplete(item._id)}>
+            <span>{item.title}</span>
+            <button
+              className="delete-button"
+              onClick={(e) => {handleDelete(item._id);}}>❌
+              </button>
           </li>
         ))}
       </ul>

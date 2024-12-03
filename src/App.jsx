@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import Reminders from './pages/Reminders';
 import AddReminder from './components/AddReminder';
 import ReminderDetail from './pages/ReminderDetail';
+import RemindersCompleted from './pages/RemindersCompleted';
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/learn" element={<LearnMore />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/reminders" element={<Reminders />} /> 
+            <Route path="/reminders/completed" element={<RemindersCompleted />} />
             <Route path="/addreminder" element={<div><AddReminder/></div>}/>
             <Route path="/reminders/:id" element={<ReminderDetail />} />
           </Routes>

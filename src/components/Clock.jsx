@@ -15,9 +15,15 @@ const Clock = ({ showPomodoro = true }) => {
 
   useEffect(() => {
     let timer;
+    const alarm = new Audio("/sounds/alarm.mp3");
     if (Pomodoro && isRunning) {
       timer = setInterval(() => {
-        setTimeLeft((prevTimeLeft) => (prevTimeLeft > 0 ? prevTimeLeft - 1 : 0));
+        setTimeLeft((prevTimeLeft) => {
+          if (prevTimeLeft === 1) {
+            alarm.play(); 
+          }
+          return prevTimeLeft > 0 ? prevTimeLeft - 1 : 0;
+        });
       }, 1000);
     } else {
       clearInterval(timer);
