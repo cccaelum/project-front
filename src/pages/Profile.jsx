@@ -10,7 +10,26 @@ function Profile() {
 
   useEffect(() => {
     fetchReminders();
-  }, [fetchReminders]);
+
+    // Verificación de recordatorios para mañana
+  if (user) {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1); 
+
+    const alertedReminders = JSON.parse(localStorage.getItem('alertedReminders')) || [];
+
+    const upcomingReminder = reminders.find(reminder => {
+      const reminderDate = new Date(reminder.date);
+      return reminderDate.toDateString() === tomorrow.toDateString() && !alertedReminders.includes(reminder._id);
+    });
+
+    if (upcomingReminder) {
+      alert(`Don't forget! You have a reminder for tomorrow: ${upcomingReminder.title}`);
+      alertedReminders.push(upcomingReminder._id);
+      localStorage.setItem('alertedReminders', JSON.stringify(alertedReminders));
+      }
+    }
+  }, [fetchReminders, reminders, user]);
 
   const handleLogout = () => {
     console.log("Before clearing:", sessionStorage.getItem("anonymousReminders"));
