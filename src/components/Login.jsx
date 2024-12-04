@@ -29,6 +29,7 @@ function Login() {
       const response = await axios.get("/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log("UserId from backend:", response.data.userId);
       setUser(response.data); // Actualiza el contexto de usuario
 
       navigate("/profile");

@@ -1,38 +1,38 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { RemindersContext } from "../contexts/RemindersContext";
 
 const RemindersCompleted = () => {
-  const [completedReminders, setCompletedReminders] = useState([]);
-  const urlApi = `${import.meta.env.VITE_APP_API_URL}reminders`;
+  const { reminders, fetchReminders } = useContext(RemindersContext);
+
+  const completedReminders = reminders.filter((reminder) => reminder.completed);
 
   useEffect(() => {
-    const fetchCompletedReminders = async () => {
-      const token = localStorage.getItem("authToken");
-      const config = token
-        ? { headers: { Authorization: `Bearer ${token}` } }
-        : {};
-      try {
-        const response = await axios.get(urlApi, config);
-        const completed = response.data.filter(reminder => reminder.completed);
-        setCompletedReminders(completed);
-      } catch (error) {
-        console.error("Error fetching completed reminders:", error);
-      }
-    };
-
-    fetchCompletedReminders();
-  }, []);
+    fetchReminders(); 
+  }, [fetchReminders]);
 
   return (
     <div className="completed-reminders-container">
-      <h3>Completed Reminders</h3>
-      <ul className='completed-reminders-list'>
-        {completedReminders.map((item) => (
-          <li key={item._id}>{item.title}</li>
-        ))}
-      </ul>
+      <div><h2>Completed Reminders</h2><Link to="/profile">Back to Profile →</Link></div>
+      {completedReminders.length === 0 ? (
+        <p>No completed reminders yet!</p>
+      ) : (
+        <ul className="completed-reminders-list">
+          {completedReminders.map((reminder) => (
+            <li key={reminder._id}>
+              <strong>{reminder.title}</strong>
+              <p>
+                <em>Completed:</em> {new Date(reminder.updatedAt).toLocaleDateString()}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+      
     </div>
+    
   );
 };
 
 export default RemindersCompleted;
+

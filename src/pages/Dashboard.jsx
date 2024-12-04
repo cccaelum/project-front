@@ -14,12 +14,16 @@ const Dashboard = () => {
   return (<div className="dashboard-container">
   {user ? (
         <>
-          <h2>Welcome, {user.name}!</h2>
+          <div className="cards-container">
           <div className="card remind-me"><span className="pin">📌</span><Link to="/">Remind Me</Link></div>
+          <div className="card sign-up"><Link to="/profile">Welcome, {user.name}!</Link><span className="arrow">→</span></div>
+          <div className="card dark-mode"><DarkModeToggle /></div>
           <div className="card clock"><Clock /></div>
-          <AddReminder/>
-          <Calendar/>
-          <Weather/>
+          <div className="card add-reminder"><AddReminder/></div>
+          <div className="card reminders"><Reminders/></div>
+          <div className="card calendar"><Calendar/></div>
+          <div className="card weather"><Weather/></div>
+          </div>
         </>
       ) : (
         <>
@@ -29,7 +33,7 @@ const Dashboard = () => {
         <div className="card dark-mode"><DarkModeToggle /></div>
         <div className="card clock"><Clock /></div>
         <div className="card add-reminder"><AddReminder/></div>
-        <div className="card reminders"><Reminders /></div>
+        <div className="card reminders"><Reminders/></div>
         <div className="card calendar"><Calendar/></div>
         <div className="card weather"><Weather/></div>
         </div>

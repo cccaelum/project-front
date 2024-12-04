@@ -204,7 +204,11 @@ body.dark-mode .reminders-container select:focus {
   border: none;
 }
 
-.delete-button, .complete-button {
+.reminder-buttons {
+  display: flex;
+}
+
+.delete-button, .complete-button, .details-button, .edit-button {
   display: flex;
   gap: 0px;
   cursor: pointer;
@@ -234,9 +238,7 @@ body.dark-mode .reminders-container select:focus {
 }
 
 .reminders-list li:hover span {
-  text-decoration: line-through;
   color: gray;
-  cursor: pointer;
 }
 
 .learn-more {
@@ -334,7 +336,7 @@ h2 {
 
 /* Estilo para los botones */
 .register-container button,
-.log-in-container button, .add-reminder-div button {
+.log-in-container button, .add-reminder-div button, .log-out {
   background-color: #9d1ff6; 
   color: white;
   padding: 10px 20px;
@@ -508,3 +510,113 @@ h2 {
 .weather-icon {
   width: 50px;
 }
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #f4f4f4; 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container a:hover, .completed-reminders-container a:hover, .details-container a:hover{
+  color: #ff5722;
+}
+.completed-reminders-container {
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  background-color: #f4f4f4; 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.completed-reminders-list {
+  list-style-type:square
+}
+.completed-reminders-list li {
+  text-align: left;
+}
+
+.log-out:hover {
+  background-color: #4a057b;
+}
+
+.details-container {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: auto;
+  margin: 20px auto;
+}
+
+.details-container p {
+  text-align: left;
+}
+
+.details-container .reminder-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.edit-reminder-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+
+.edit-reminder-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+
+.edit-reminder-form input,
+.edit-reminder-form textarea,
+.edit-reminder-form select {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.edit-reminder-form input:focus,
+.edit-reminder-form textarea:focus,
+.edit-reminder-form select:focus {
+  border-color: #9d1ff6;
+}
+
+.edit-reminder-form button {
+  background-color:#ff5722;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-reminder-form button:hover {
+  background-color: #218838;
+}
+
+.edit-reminder-form button[type="button"] {
+  background-color: #6c757d;
+}
+
+.edit-reminder-form button[type="button"]:hover {
+  background-color: #5a6268;
+}
+

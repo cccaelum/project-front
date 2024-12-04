@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { RemindersContext } from "../contexts/RemindersContext";
 
 const AddReminder = () => {
+  const { addReminder } = useContext(RemindersContext);
   const [reminder, setReminder] = useState({
     title: "",
     description: "",
@@ -34,6 +36,7 @@ const AddReminder = () => {
 
     try {
       const response = await axios.post(urlApi, reminder, config);
+      addReminder(response.data);
       setCreatedReminder(`Reminder added: ${response.data.title}`);
       setReminder({
         title: "",

@@ -3,7 +3,6 @@ import axios from "../axiosConfig";
 
 export const UserContext = createContext();
 
-// Exportación por defecto para el proveedor del contexto
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,16 +20,16 @@ const UserProvider = ({ children }) => {
           setUser(response.data);
         } catch (error) {
           console.error("Error getting user:", error);
-          setUser(null); // Asegura que `user` se establezca como null en caso de error
+          setUser(null); 
         }
       } else {
-        setUser(null); // Si no hay token, establece `user` en null
+        setUser(null); 
       }
       setLoading(false);
     };
 
     fetchUser();
-  }, []); // Corre una vez al cargar el contexto
+  }, []); 
 
   return (
     <UserContext.Provider value={{ user, setUser, loading }}>

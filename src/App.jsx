@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import UserProvider from "./contexts/UserContext";
+import { RemindersProvider } from "./contexts/RemindersContext";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Register from "./components/Register";
@@ -17,7 +18,8 @@ const App = () => {
 
   return (
     <UserProvider>
-    <Router>
+      <RemindersProvider>
+      <Router>
       <div>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -32,7 +34,8 @@ const App = () => {
             <Route path="/reminders/:id" element={<ReminderDetail />} />
           </Routes>
       </div>
-    </Router>
+      </Router>
+      </RemindersProvider>
     </UserProvider>
   )
 }
