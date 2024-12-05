@@ -17,7 +17,9 @@ const UserProvider = ({ children }) => {
           const response = await axios.get("https://remindme-6w8d.onrender.com/profile", {
             headers: { Authorization: `Bearer ${token}` },
           });
-          setUser(response.data);
+          setUser({
+            ...response.data,
+          });
         } catch (error) {
           console.error("Error getting user:", error);
           setUser(null); 

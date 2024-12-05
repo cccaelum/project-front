@@ -4,15 +4,16 @@ import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import axios from "../axiosConfig";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext"; // Importa el contexto
+import { UserContext } from "../contexts/UserContext"; 
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [city, setCity] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { setUser } = useContext(UserContext); // Accede a la función setUser
+  const { setUser } = useContext(UserContext); 
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -22,15 +23,14 @@ function Register() {
       const token = await user.getIdToken();
       localStorage.setItem("authToken", token);
 
-      // Enviar los datos del usuario al backend para crear en MongoDB
       await axios.post(
         "/profile",
-        { uid: user.uid, name, email },
+        { uid: user.uid, name, email, city },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
       // Actualiza el contexto de usuario
-      setUser({ uid: user.uid, name, email }); // Actualiza el usuario en el contexto
+      setUser({ uid: user.uid, name, email, city }); 
 
       navigate("/profile");
     } catch (error) {
@@ -55,6 +55,13 @@ function Register() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="City"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
           required
         />
         <input

@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 const Weather = () => {
+  const { user } = useContext(UserContext);
   const [weatherData, setWeatherData] = useState(null);
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(user?.city || "");
   const [loading, setLoading] = useState(false);
 
   const apiKey = `${import.meta.env.VITE_WEATHER_API}`
 
-  const fetchWeather = () => {
-    if (!city) {
+  useEffect(() => {
+    if (user?.city && !weatherData) {
+      setCity(user.city); 
+      fetchWeather(user.city);
+    }
+  }, [user, weatherData]);
+
+  const fetchWeather = (queryCity = city) => {
+    if (!queryCity) {
       alert("Please enter a city");
       return;
     }
@@ -39,7 +48,7 @@ const Weather = () => {
             onChange={(e) => setCity(e.target.value)}
             className="weather-input"
           />
-          <button onClick={fetchWeather} className="weather-button">
+          <button onClick={() => fetchWeather()} className="weather-button">
             Search
           </button>
         </div>
