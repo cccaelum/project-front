@@ -1,3 +1,4 @@
+/* Contenedor principal */
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -5,6 +6,7 @@
   text-align: center;
 }
 
+/* Estilos generales */
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
@@ -15,7 +17,18 @@ body {
   margin: 0;
 }
 
-/* Estilos para el modo oscuro */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Modo oscuro */
 body.dark-mode {
   background-color: #312e5f;
 }
@@ -115,7 +128,7 @@ body.dark-mode .reminders-container select:focus {
   background-color: #a6a6a6;
 }
 
-/*Home*/
+/*Home y Dashboard*/
 
 .cards-container {
   display: grid;
@@ -132,6 +145,14 @@ body.dark-mode .reminders-container select:focus {
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card.remind-me {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
 }
 
 .remind-me, .reminders, .weather {
@@ -153,6 +174,15 @@ body.dark-mode .reminders-container select:focus {
   position: relative;
   background-color: #ff1744;
   color: white;
+}
+
+.learn-more {
+  background-color: #e6e6e6;
+  color: black;
+}
+
+.card.learn-more span {
+ cursor: pointer;
 }
 
 .log-in, .add-reminder {
@@ -202,7 +232,6 @@ body.dark-mode .reminders-container select:focus {
   scrollbar-color: #ff1744 #f4f4f4; 
 }
 
-
 .reminders-container select {
   background-color: transparent;
   border: none;
@@ -245,15 +274,6 @@ body.dark-mode .reminders-container select:focus {
   color: gray;
 }
 
-.learn-more {
-  background-color: #e6e6e6;
-  color: black;
-}
-
-.card.learn-more span {
- cursor: pointer;
-}
-
 .anonymous {
   background-color: #9d1ff6;
   color: white;
@@ -280,14 +300,6 @@ body.dark-mode .reminders-container select:focus {
   color:#ff1744
 }
 
-.card.remind-me {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; 
-}
-
 .pin {
   position: absolute;
   top: -20px;  
@@ -300,11 +312,7 @@ body.dark-mode .reminders-container select:focus {
   margin-left: -20px;  
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
+/* Componentes Register y Login */
 .register-container, .log-in-container {
   background-color: #f4f4f4; 
   border-radius: 8px;
@@ -314,12 +322,6 @@ a {
   max-width: 400px;
   margin: 20px auto;
   text-align: center;
-}
-
-h2 {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 20px;
 }
 
 .register-container input,
@@ -337,7 +339,14 @@ h2 {
   outline: none;
 }
 
-/* Estilo para los botones */
+.register-container p,
+.log-in-container p {
+  color: #ff5722;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Botones */
 .register-container button,
 .log-in-container button, .add-reminder-div button, .log-out {
   background-color: #9d1ff6; 
@@ -356,12 +365,16 @@ h2 {
   background-color: #5d0a89; 
 }
 
-/* Mensajes de error */
-.register-container p,
-.log-in-container p {
-  color: #ff5722;
-  font-size: 14px;
-  margin-top: 10px;
+/* Dashboard */
+
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .calendar {
@@ -448,15 +461,6 @@ h2 {
   font-size: 1.5rem;
 }
 
-.dashboard-container {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 .pomodoro h1{
   color: #f4f4f4;
 }
@@ -521,6 +525,8 @@ h2 {
   width: 50px;
 }
 
+/* Profile */ 
+
 .profile-container {
   display: flex;
   flex-direction: column;
@@ -555,6 +561,7 @@ h2 {
   background-color: #4a057b;
 }
 
+/* Reminder Detail */
 .details-container {
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -619,7 +626,7 @@ h2 {
 }
 
 .edit-reminder-form button:hover {
-  background-color: #218838;
+  background-color: #fa8f48;
 }
 
 .edit-reminder-form button[type="button"] {
@@ -628,5 +635,42 @@ h2 {
 
 .edit-reminder-form button[type="button"]:hover {
   background-color: #5a6268;
+}
+
+/* Responsive */ 
+
+@media (max-width: 1024px) {
+  body {
+    height: auto;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;  
+    gap: 5px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .card {
+    width: 100%;
+    margin: 0 auto 10px auto; 
+  }
+
+  .dashboard-container {
+    flex-direction: column;  
+    padding: 10px;
+  }
+
+  .weather-container {
+    width: 100%;
+  }
+
+  .weather-input {
+    width: 100%;
+  }
 }
 
