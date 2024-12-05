@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { auth } from "../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import axios from "../axiosConfig";
+import axios from "../config/axiosConfig";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 

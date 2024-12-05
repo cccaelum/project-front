@@ -4,7 +4,7 @@ import { UserContext } from "../contexts/UserContext";
 const Weather = () => {
   const { user } = useContext(UserContext);
   const [weatherData, setWeatherData] = useState(null);
-  const [city, setCity] = useState(user?.city || "");
+  const [city, setCity] = useState(user?.city || "Enter your city");
   const [loading, setLoading] = useState(false);
 
   const apiKey = `${import.meta.env.VITE_WEATHER_API}`

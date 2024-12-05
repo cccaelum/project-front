@@ -31,13 +31,19 @@ const Calendar = () => {
     };
   
     const generateDays = () => {
+      const today = new Date();
+      const isCurrentMonth =
+        today.getFullYear() === currentDate.getFullYear() &&
+        today.getMonth() === currentDate.getMonth();
+
       const days = [];
       for (let i = 0; i < firstDayOfMonth; i++) {
         days.push(<div key={`empty-${i}`} className="empty"></div>);
       }
       for (let day = 1; day <= daysInMonth; day++) {
+        const isToday = isCurrentMonth && today.getDate() === day;
         days.push(
-          <div key={day} className="day">
+          <div key={day} className={`day ${isToday ? "current-day" : ""}`}>
             {day}
           </div>
         );

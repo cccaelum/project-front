@@ -98,6 +98,10 @@ body.dark-mode .card.illustration {
   color: #f4f4f4;
 }
 
+body.dark-mode .reminders-container {
+  color: #f4f4f4;
+}
+
 body.dark-mode .card.dark-mode button {
   color:#f4f4f4
 }
@@ -321,16 +325,15 @@ h2 {
 .register-container input,
 .log-in-container input {
   width: 100%;
-  padding: 10px;
+  height: 30px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
-  border-radius: 5px;
   font-size: 16px;
 }
 
 .register-container input:focus,
 .log-in-container input:focus {
-  border-color: #4a90e2; 
+  border-color: #9d1ff6; 
   outline: none;
 }
 
@@ -344,19 +347,19 @@ h2 {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  width: 100%;
+  width: auto;
   margin-top: 10px;
 }
 
 .register-container button:hover,
 .log-in-container button:hover {
-  background-color: #357ab7; 
+  background-color: #5d0a89; 
 }
 
 /* Mensajes de error */
 .register-container p,
 .log-in-container p {
-  color: #9d1ff6;
+  color: #ff5722;
   font-size: 14px;
   margin-top: 10px;
 }
@@ -398,6 +401,13 @@ h2 {
   padding: 10px;
   border-radius: 50%;
   transition: background-color 0.3s;
+}
+
+.current-day {
+  background-color: #ff5722;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
 }
 
 .day:hover {
