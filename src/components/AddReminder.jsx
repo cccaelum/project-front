@@ -17,11 +17,7 @@ const AddReminder = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setReminder((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+    setReminder((prev) => ({...prev, [name]: value,}));};
 
   const handleAddReminders = async () => {
     if (!reminder.title.trim()) {

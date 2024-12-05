@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Configura la URL base para todas las solicitudes de axios
 axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
-axios.defaults.headers.common["Cache-Control"] = "no-cache"; // Deshabilita la caché
+axios.defaults.headers.common["Cache-Control"] = "no-cache"; 
 axios.defaults.headers.common["Pragma"] = "no-cache";
 
 const token = localStorage.getItem("authToken");

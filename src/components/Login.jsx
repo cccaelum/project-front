@@ -16,21 +16,17 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      // Inicia sesión en Firebase
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       const token = await user.getIdToken();
 
-      // Guarda el token en localStorage y actualiza axios
       localStorage.setItem("authToken", token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      // Obtén los datos del usuario desde el backend
       const response = await axios.get("/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("UserId from backend:", response.data.userId);
-      setUser(response.data); // Actualiza el contexto de usuario
+      setUser(response.data); 
 
       navigate("/profile");
     } catch (error) {

@@ -1,28 +1,16 @@
 import { useState, useEffect } from "react";
 
 const DarkModeToggle = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") === "true";
+  });
 
   useEffect(() => {
-    const storedMode = localStorage.getItem("darkMode");
-    if (storedMode === "true") {
-      setDarkMode(true);
-      document.body.classList.add("dark-mode");
-    }
-  }, []);
+    document.body.classList.toggle("dark-mode", darkMode);
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]); 
 
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode) => {
-      const newMode = !prevMode;
-      localStorage.setItem("darkMode", newMode);
-      if (newMode) {
-        document.body.classList.add("dark-mode");
-      } else {
-        document.body.classList.remove("dark-mode");
-      }
-      return newMode;
-    });
-  };
+  const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
   return (
     <div className="dark-mode-toggle">
@@ -40,3 +28,4 @@ const DarkModeToggle = () => {
 };
 
 export default DarkModeToggle;
+

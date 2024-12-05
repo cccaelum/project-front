@@ -15,7 +15,7 @@ const Dashboard = () => {
   {user ? (
         <>
           <div className="cards-container">
-          <div className="card remind-me"><span className="pin">📌</span><Link to="/">Remind Me</Link></div>
+          <div className="card remind-me"><span className="pin">📌</span>Remind Me</div>
           <div className="card sign-up"><Link to="/profile">Welcome, {user.name}!</Link><span className="arrow">→</span></div>
           <div className="card dark-mode"><DarkModeToggle /></div>
           <div className="card clock"><Clock /></div>

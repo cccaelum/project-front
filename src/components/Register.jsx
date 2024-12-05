@@ -29,7 +29,6 @@ function Register() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // Actualiza el contexto de usuario
       setUser({ uid: user.uid, name, email, city }); 
 
       navigate("/profile");

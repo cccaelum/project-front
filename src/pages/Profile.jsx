@@ -11,7 +11,6 @@ function Profile() {
   useEffect(() => {
     fetchReminders();
 
-    // Verificación de recordatorios para mañana
   if (user) {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1); 
@@ -32,13 +31,11 @@ function Profile() {
   }, [fetchReminders, reminders, user]);
 
   const handleLogout = () => {
-    console.log("Before clearing:", sessionStorage.getItem("anonymousReminders"));
     localStorage.removeItem("authToken"); 
     localStorage.removeItem("userId");
     sessionStorage.setItem("anonymousReminders", JSON.stringify([]));
     setReminders([]);
     setUser(null); 
-    console.log("After clearing:", sessionStorage.getItem("anonymousReminders"));
     navigate("/");
   };
   
@@ -47,7 +44,7 @@ function Profile() {
 
   return (<>
   <div className="profile-container">
-  <div className="card remind-me"><span className="pin">📌</span><Link to="/">Remind Me</Link></div>
+  <div className="card remind-me"><span className="pin">📌</span><Link to="/dashboard">Remind Me</Link></div>
       <h2>Profile</h2>
       <img src="./img/sticker.png" alt="Illustration" style={{display: "block", margin: "-25px auto", width: "150px", height: "auto" }} />
       {user ? (
@@ -57,10 +54,7 @@ function Profile() {
           <p>Email: {user.email}</p>
           </div>
           <Link to="/reminders/completed">Completed Reminders ({reminders.filter((r) => r.completed).length})</Link>
-          <Link to="/dashboard">Dashboard →</Link>
-          <button className='log-out' onClick={handleLogout}>
-            Logout
-          </button>
+          <button className='log-out' onClick={handleLogout}>Logout</button>
         </>
       ) : (
         <p>No user data available.</p>
