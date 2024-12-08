@@ -23,6 +23,7 @@ Para hacer que el proyecto completo funcione necesitaremos guardar lo siguiente 
 ## ESTRUCTURA DE ARCHIVOS
 
 Esta es la estructura de archivos del proyecto con una breve descripción de cada carpeta/archivo:
+```
 .
 ├── public
 │   ├── img/                          # Favicon e imagen 
@@ -56,6 +57,8 @@ Esta es la estructura de archivos del proyecto con una breve descripción de cad
 ├── main.jsx                          # Punto de entrada principal que renderiza la aplicación
 ├── index.html                        # Archivo HTML base
 └── package.json                      # Dependencias del proyecto
+
+```
 
 ## DESPLIEGUE
 
