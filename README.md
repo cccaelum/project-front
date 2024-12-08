@@ -22,30 +22,40 @@ Para hacer que el proyecto completo funcione necesitaremos guardar lo siguiente 
 
 ## ESTRUCTURA DE ARCHIVOS
 
+Esta es la estructura de archivos del proyecto con una breve descripción de cada carpeta/archivo:
 .
 ├── public
-│   ├── db.js                      # 
-│   └──                                 # Estilos CSS
+│   ├── img/                          # Favicon e imagen 
+│   ├── sounds/                       # Archivo de sonido para el temporizador
+│   └── styles.css                    # Estilos CSS globales
 ├── src
-│   ├── components
-│   └──   
-├── 
-│   └──           
-├── 
-│   └──                  
-├──                          
-│   ├── css                        
-│   ├── images                     
-│   ├──                       # Archivo para inicializar Firebase y la función de login
-│   └──                       
-├──                          
-│   ├──                # Define las rutas relacionadas con la API
-│   ├──               # Define las rutas que requieren autenticación
-│   └──            # Define las rutas relacionadas con los productos
-├──                            # Variables de entorno
-├── 
-└── package.json                   # Archivo con las dependencias del proyecto
-
+│   ├── components/                   # Componentes reutilizables de la aplicación:
+│   │   ├── AddReminder.jsx           # para agregar recordatorios
+│   │   ├── Calendar.jsx              # para mostrar el calendario
+│   │   ├── Clock.jsx                 # del reloj y temporizador
+│   │   ├── DarkModeToggle.jsx        # para alternar entre tema oscuro y claro
+│   │   ├── LearnMore.jsx             # con breve descripcion de la app
+│   │   ├── Login.jsx                 # para el inicio de sesión de usuarios
+│   │   ├── ProtectedRoute.jsx        # ruta protegida para usuarios autenticados (para Profile)
+│   │   ├── Register.jsx              # para el registro de usuarios
+│   │   └── Weather.jsx               # para mostrar información del clima
+│   ├── config/                      
+│   │   ├── axiosConfig.js            # Configuración de Axios para las solicitudes
+│   │   └── firebase.js               # Configuración de Firebase para la autenticación 
+│   ├── contexts/                     # Archivos de contexto para gestionar el estado global:
+│   │   ├── RemindersContext.js       # Contexto para los recordatorios
+│   │   └── UserContext.js            # Contexto para la gestión de usuarios
+│   └── pages/                        # Vistas principales de la aplicación
+│       ├── Dashboard.jsx             # Panel principal
+│       ├── Home.jsx                  # Página de inicio
+│       ├── Profile.jsx               # Página de perfil del usuario
+│       ├── ReminderDetail.jsx        # Detalle de un recordatorio específico
+│       ├── Reminders.jsx             # Lista de recordatorios activos
+│       └── RemindersCompleted.jsx    # Lista de recordatorios completados
+├── App.jsx                           # Componente raíz de la aplicación
+├── main.jsx                          # Punto de entrada principal que renderiza la aplicación
+├── index.html                        # Archivo HTML base
+└── package.json                      # Dependencias del proyecto
 
 ## DESPLIEGUE
 
